@@ -1,0 +1,58 @@
+.weather-wrapper {
+  background: linear-gradient(to right bottom, #{$primary}, #{$primary-light});
+  border-radius: 25px;
+  box-shadow: 0 1px 3rem $primary-dark;
+
+  & .main-weather{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+
+    & .temp-desc,
+    & .temp-degrees {
+      font-size: 3rem;
+    }
+
+    & img {
+      width: 7rem;
+      align-self: start;
+    }
+  }
+
+  & ul {
+    padding: 3rem;
+    background: white;
+    & li.weather-attribute {
+      color: $dark-gray-2;
+      padding: 2rem 2rem;
+      border-bottom: 1px solid $light-gray-1;
+    }
+    & .alert-message{
+      color: red;
+    }
+  }
+}
+
+h1 {
+  color: white;
+      letter-spacing: 3px;
+  text-shadow: 0 2px 3px $primary-dark;
+  margin-bottom: 2rem;
+  font-family: $font-secondary;
+}
+.city-input::placeholder{
+  color: $light-gray-2;
+}
+
+.btn {
+  background: $primary;
+  color: white;
+  border: $primary-dark;
+}
+
+.active {
+  text-shadow: 0 2px 3px $primary-dark;
+  font-weight: bolder;
+  
+}

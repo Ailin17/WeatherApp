@@ -1,0 +1,20 @@
+body {
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: minmax(2rem, 1fr) minmax(30rem, 60rem) minmax(2rem, 1fr);
+  background: $dark-gray-1;
+}
+
+.weather-wrapper {
+  grid-column: 2 / 3;
+  padding: 5rem;
+  border: 1px solid $dark-gray-3;
+}
+
+.cities-wrapper {
+  grid-column: 2 /3;
+}
+
+img {
+  width: 100%;
+}

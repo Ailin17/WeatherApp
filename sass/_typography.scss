@@ -1,0 +1,26 @@
+h1 {
+  font-size: 6rem;
+  @media only screen and (max-width: $bp-md) {
+    font-size: 4rem;
+  }
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+li {
+  color: $light-gray-3;
+}
+
+.text-center {
+  text-align: center;
+}
