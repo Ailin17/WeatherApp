@@ -23,25 +23,28 @@
                 <div class="temp-lo text-center"></div>
             </div>
         </div>
-        
+
         <ul>
             <li class="weather-attribute text-center sunrise"></li>
             <li class="weather-attribute text-center sunset"></li>
             <li class="weather-attribute text-center feels-like"></li>
             <li class="weather-attribute text-center humidity"></li>
-            <input type="text" placeholder="Enter City" class="city-input">
+            <div class="country-select">
+                <select name="Country" id="country" class="country"></select>
+            </div>
+            <div class="city-autocomplete">
+                <input id="city-id" type="hidden" value="">
+                <input type="text" placeholder="Enter City" class="city-input">
+            </div>
             <a href="#" class="btn">Change Location</a>
-            <a href="#" id="C" class="celsius unit active">C&deg;</a> / 
+            <a href="#" id="C" class="celsius unit active">C&deg;</a> /
             <a href="#" id="F" class="fahrenheit unit">F&deg;</a>
         </ul>
     </div>
 
-    <div class="cities-wrapper">
-        <h3>Popular Cities</h3>
-    </div>
 
-    <script src="storage.js"></script>
     <script src="ui.js"></script>
+    <script src="select.js"></script>
     <script src="weather.js"></script>
     <script src="app.js"></script>
 </body>

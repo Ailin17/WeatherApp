@@ -1,0 +1,12 @@
+#autocomplete-list{
+    line-height:2;
+    & > div {
+        border-bottom: 1px solid $light-gray-1;
+        padding-left: 2rem;
+        font-size: 1.5rem;
+
+        &:hover{
+            background: $primary-light;
+        }
+    }
+}

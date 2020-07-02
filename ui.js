@@ -10,6 +10,7 @@ class UI {
         this.humidity = document.querySelector('.humidity');
         this.high = document.querySelector('.temp-hi');
         this.lo = document.querySelector('.temp-lo');
+        this.cities;
     }
 
     getTime(time) {
@@ -19,10 +20,10 @@ class UI {
     }
 
     toCelsius(K) {
-        return (K - 273.15).toFixed(1);
+        return praseInt(K - 273.15);
     }
     toFahrenheit(K) {
-        return ((K - 273.15) * 9 / 5 + 32).toFixed(1);
+        return parseInt((K - 273.15) * 9 / 5 + 32);
     }
 
     paint(weather) {
@@ -56,7 +57,7 @@ class UI {
                 break;
         }
 
-        this.city.textContent = city;
+        this.city.textContent = weather.name;
         this.temp_desc.textContent = `Currently: ${weather.weather[0].main}`;
         this.sunrise.textContent = `Sunrise: ${this.getTime(weather.sys.sunrise)}`;
         this.sunset.textContent = `Sunset: ${this.getTime(weather.sys.sunset)}`;
@@ -86,9 +87,48 @@ class UI {
         document.querySelector('.city-input').value = '';
     }
 
-    changeUnit(unit){
+    changeUnit(unit) {
         const units = document.querySelectorAll('.unit')
         units.forEach(unit => unit.classList.remove('active'));
         unit.classList.add('active');
+    }
+
+    countriesDropdown(list) {
+        let html = ' <option value=null>Choose a Country</option>';
+        list.forEach(item => {
+            html += `
+            <option value=${item.id}>${item.city}</option>
+            `
+        });
+        document.querySelector('#country').innerHTML = html;
+    }
+
+    createAutocomplete(list) {
+        if(document.querySelector('#autocomplete-list')){
+            document.querySelector('#autocomplete-list').remove();
+        }
+        const hiddenInput = document.querySelector('#city-id')
+        const input = document.querySelector('.city-input')
+        const div = document.createElement('DIV');
+        div.setAttribute("id", "autocomplete-list");
+        div.setAttribute("class", "autocomplete-items");
+        document.querySelector('.city-autocomplete').appendChild(div);
+
+
+
+       // let html = '';
+        list.forEach(item => {
+            const b = document.createElement('DIV');
+            b.innerHTML = item.name;
+            b.innerHTML += `<input type='hidden' value='${item.id}'>`;
+            b.addEventListener('click', () => {
+                hiddenInput.value = item.id;
+                input.value = item.name;
+                div.remove();
+            });
+            div.appendChild(b);
+        })
+
+        console.log(div);
     }
 }
