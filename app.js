@@ -1,6 +1,7 @@
 const weather = new Weather('2172797');
 const ui = new UI();
 const select = new Select();
+const text = null;
 
 document.addEventListener('DOMContentLoaded', getWeather);
 document.querySelector('.btn').addEventListener('click', changeCity);
