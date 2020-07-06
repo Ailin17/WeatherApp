@@ -118,10 +118,17 @@
     height: 0; } }
 
 #autocomplete-list {
-  line-height: 2; }
+  line-height: 2;
+  background: #fff;
+  position: absolute;
+  width: 30rem;
+  z-index: 2;
+  box-shadow: 0 5px 20rem #5c5c5c; }
   #autocomplete-list > div {
     border-bottom: 1px solid #e0e0e0;
-    padding-left: 2rem; }
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer; }
     #autocomplete-list > div:hover {
       background: #a0f0c1; }
 
@@ -166,7 +173,7 @@ p {
   border: 1.5px solid #111111;
   color: #111111;
   text-transform: uppercase;
-  padding: 1.5rem 2.5rem;
+  padding: 1rem 1rem;
   border: 1px solid #000000;
   box-sizing: border-box;
   align-self: start;
@@ -174,9 +181,9 @@ p {
   text-decoration: none;
   text-align: center;
   transition: all 0.2s;
-  margin: 2rem 0;
   display: grid;
-  justify-self: center; }
+  justify-self: center;
+  font-size: 1.1rem; }
   .btn:hover {
     background: #111111;
     color: #e0e0e0; }
@@ -268,8 +275,7 @@ svg {
 
 input {
   width: 100%;
-  padding: 1rem;
-  margin: 1rem 0; }
+  padding: 0.8rem; }
 
 body {
   display: grid;
@@ -279,7 +285,7 @@ body {
 
 .weather-wrapper {
   grid-column: 2 / 3;
-  padding: 5rem;
+  padding: 3rem;
   border: 1px solid #727272; }
 
 .cities-wrapper {
@@ -331,17 +337,22 @@ li {
     position: relative; }
     .weather-wrapper ul li.weather-attribute {
       color: #5c5c5c;
-      padding: 2rem 2rem;
-      border-bottom: 1px solid #e0e0e0; }
+      padding: 2rem 2rem; }
+      .weather-wrapper ul li.weather-attribute:not(:last-child) {
+        border-bottom: 1px solid #e0e0e0; }
     .weather-wrapper ul .alert-message {
       color: red; }
 
-h1 {
+.title h1 {
   color: white;
   letter-spacing: 3px;
   text-shadow: 0 2px 3px #3b7553;
-  margin-bottom: 2rem;
-  font-family: "Abril Fatface", cursive; }
+  font-family: "Abril Fatface", cursive;
+  display: inline; }
+
+.title .emoji {
+  display: inline;
+  font-size: 6rem; }
 
 .city-input::placeholder {
   color: #c1c0c0; }
@@ -355,17 +366,22 @@ h1 {
   text-shadow: 0 2px 3px #3b7553;
   font-weight: bolder; }
 
+.change-location {
+  display: grid;
+  grid-template-columns: 1fr 1fr min-content;
+  grid-gap: 2rem;
+  margin-bottom: 3rem; }
+  .change-location .btn {
+    align-self: center; }
+
 /* The container must be positioned relative: */
-.country-select {
+.change-location__country-select {
   position: relative;
   font-family: Arial; }
 
-.country-select select {
+.change-location__country-select select {
   display: none;
   /*hide original SELECT element: */ }
-
-.select-selected {
-  background-color: white; }
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
@@ -384,7 +400,8 @@ h1 {
   top: 7px; }
 
 /* style the items (options), including the selected item: */
-.select-items div, .select-selected {
+.select-items div,
+.select-selected {
   color: #727272;
   padding: 8px 16px;
   font-size: 1.5rem;
@@ -392,19 +409,27 @@ h1 {
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer; }
 
+.select-selected {
+  background-color: white;
+  border: 1px solid #727272; }
+
 /* Style items (options): */
 .select-items {
   position: absolute;
   background-color: #fff;
   color: white;
-  top: 100%;
   left: 0;
   right: 0;
-  z-index: 99; }
+  z-index: 99;
+  width: 30rem;
+  height: 30rem;
+  overflow: scroll;
+  box-shadow: 0 5px 20rem #5c5c5c; }
 
 /* Hide the items when the select box is closed: */
 .select-hide {
   display: none; }
 
-.select-items div:hover, .same-as-selected {
+.select-items div:hover,
+.same-as-selected {
   background-color: rgba(0, 0, 0, 0.1); }

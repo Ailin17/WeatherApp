@@ -62,8 +62,6 @@ const searchCities = async searchQuery => {
     if (searchQuery.length < 1) { matches = [] }
     // console.log(matches);
     ui.createAutocomplete(matches);
-
-
 }
 
 
@@ -76,9 +74,17 @@ const getCountries = async () => {
             id: city.code
         }
     })
+
+    //ui.createAutocomplete(matches);
     ui.countriesDropdown(list);
     select.getSelect();
 }
 
+/* const getEmojis = async () => {
+    const res = await fetch('../data/countryemoji.json');
+    const countries = await res.json();
+    ui.getEmojis(countries);
+} */
 
 document.addEventListener('DOMContentLoaded', getCountries);
+//document.addEventListener('DOMContentLoaded', getEmojis);

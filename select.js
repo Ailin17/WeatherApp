@@ -4,8 +4,8 @@ class Select {
 
     getSelect(){
         var x, i, j, l, ll, selElmnt, a, b, c;
-        /* Look for any elements with the class "country-select": */
-        x = document.getElementsByClassName("country-select");
+        /* Look for any elements with the class "change-location__country-select": */
+        x = document.getElementsByClassName("change-location__country-select");
         l = x.length;
         for (i = 0; i < l; i++) {
             selElmnt = x[i].getElementsByTagName("select")[0];

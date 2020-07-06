@@ -13,6 +13,7 @@ class UI {
         this.cities;
     }
 
+
     getTime(time) {
         var date = new Date(time * 1000);
         var timestr = date.toLocaleTimeString();
@@ -20,13 +21,33 @@ class UI {
     }
 
     toCelsius(K) {
-        return praseInt(K - 273.15);
+        return parseInt(K - 273.15);
     }
     toFahrenheit(K) {
         return parseInt((K - 273.15) * 9 / 5 + 32);
     }
 
     paint(weather) {
+
+        const countries = this.getEmojis()
+            .then(results => {
+                console.log(results);
+
+                results.forEach(result => {
+                   if (result.code === weather.sys.country) {
+                       const div = document.querySelector('.emoji');
+                       div.innerHTML = result.emoji;
+                       document.querySelector('.weather-wrapper').insertBefore(div, document.querySelector('h1'));
+                   }
+                })
+
+
+            })
+            .catch(err => {
+                console.log(err);
+
+            });;
+
         let units;
         if (localStorage.getItem('units') === null) {
             units = 'C';
@@ -34,14 +55,6 @@ class UI {
             units = localStorage.getItem('units');
         }
 
-        let city;
-        if (typeof (weather.weather) != "undefined") {
-            if (localStorage.getItem('city') === null) {
-                city = 'Sydney';
-            } else {
-                city = localStorage.getItem('city');
-            }
-        }
         switch (units) {
             case 'F':
                 this.temp.textContent = `${this.toFahrenheit(weather.main.temp)}\xB0 F`;
@@ -104,7 +117,7 @@ class UI {
     }
 
     createAutocomplete(list) {
-        if(document.querySelector('#autocomplete-list')){
+        if (document.querySelector('#autocomplete-list')) {
             document.querySelector('#autocomplete-list').remove();
         }
         const hiddenInput = document.querySelector('#city-id')
@@ -116,7 +129,7 @@ class UI {
 
 
 
-       // let html = '';
+        // let html = '';
         list.forEach(item => {
             const b = document.createElement('DIV');
             b.innerHTML = item.name;
@@ -130,5 +143,11 @@ class UI {
         })
 
         console.log(div);
+    }
+
+    async getEmojis() {
+        const res = await fetch('../data/countryemoji.json');
+        const countries = await res.json();
+        return countries;
     }
 }

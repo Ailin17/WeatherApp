@@ -49,7 +49,7 @@ p {
   border: 1.5px solid $dark-gray-1;
   color: $dark-gray-1;
   text-transform: uppercase;
-  padding: 1.5rem 2.5rem;
+  padding: 1rem 1rem;
   border: 1px solid #000000;
   box-sizing: border-box;
   align-self: start;
@@ -57,9 +57,10 @@ p {
   text-decoration: none;
   text-align: center;
   transition: all 0.2s;
-  margin: 2rem 0;
+ // margin: 2rem 0;
   display: grid;
   justify-self: center;
+  font-size: 1.1rem;
 
   &:hover {
     background: $dark-gray-1;
@@ -184,6 +185,6 @@ svg {
 
 input {
   width: 100%;
-  padding: 1rem;
-  margin: 1rem 0;
+  padding: 0.8rem;
+ // margin: 1rem 0;
 }
