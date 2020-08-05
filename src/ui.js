@@ -1,4 +1,6 @@
-class UI {
+
+
+export class UI {
     constructor() {
         this.city = document.querySelector('.location-title');
         this.temp = document.querySelector('.temp-degrees');
@@ -29,16 +31,16 @@ class UI {
 
     paint(weather) {
 
-        const countries = this.getEmojis()
+        this.getEmojis()
             .then(results => {
                 console.log(results);
 
                 results.forEach(result => {
-                   if (result.code === weather.sys.country) {
-                       const div = document.querySelector('.emoji');
-                       div.innerHTML = result.emoji;
-                       document.querySelector('.weather-wrapper').insertBefore(div, document.querySelector('h1'));
-                   }
+                    if (result.code === weather.sys.country) {
+                        const div = document.querySelector('.emoji');
+                        div.innerHTML = result.emoji;
+                        document.querySelector('.weather-wrapper').insertBefore(div, document.querySelector('h1'));
+                    }
                 })
 
 
@@ -46,7 +48,9 @@ class UI {
             .catch(err => {
                 console.log(err);
 
-            });;
+            });
+
+
 
         let units;
         if (localStorage.getItem('units') === null) {
@@ -79,7 +83,28 @@ class UI {
 
         this.clearField();
 
-
+        let desc = weather.weather[0].main;
+        document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
+        switch (desc) {
+            case 'Clouds':
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('img/clouds.jpg') ";
+                document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
+                break;
+            case 'Clear':
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('img/clear.jpg')";
+                document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
+                break;
+            case 'Rain':
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('img/rain.jpg')";
+                document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
+                break;
+            case 'Snow':
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('img/snow.jpg')";
+                document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
+                break;
+            default:
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to right bottom, #54ad79, #a0f0c1)"; 
+        }
     }
 
     setMessage(msg) {

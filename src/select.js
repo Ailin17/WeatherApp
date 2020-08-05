@@ -1,8 +1,9 @@
-class Select {
+export class Select {
     constructor() {
     }
 
     getSelect(){
+        var self = this;
         var x, i, j, l, ll, selElmnt, a, b, c;
         /* Look for any elements with the class "change-location__country-select": */
         x = document.getElementsByClassName("change-location__country-select");
@@ -52,44 +53,36 @@ class Select {
                 /* When the select box is clicked, close any other select boxes,
                 and open/close the current select box: */
                 e.stopPropagation();
-                closeAllSelect(this);
+                self.closeAllSelect(document.querySelector('.select-selected'));
                 this.nextSibling.classList.toggle("select-hide");
                 this.classList.toggle("select-arrow-active");
             });
         }
     }
-
-}
-
-
-
-
-
-
-
-
-function closeAllSelect(elmnt) {
-    /* A function that will close all select boxes in the document,
-    except the current select box: */
-    var x, y, i, xl, yl, arrNo = [];
-    x = document.getElementsByClassName("select-items");
-    y = document.getElementsByClassName("select-selected");
-    xl = x.length;
-    yl = y.length;
-    for (i = 0; i < yl; i++) {
-        if (elmnt == y[i]) {
-            arrNo.push(i)
-        } else {
-            y[i].classList.remove("select-arrow-active");
+    
+    closeAllSelect(elmnt) {
+        /* A function that will close all select boxes in the document,
+        except the current select box: */
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
         }
-    }
-    for (i = 0; i < xl; i++) {
-        if (arrNo.indexOf(i)) {
-            x[i].classList.add("select-hide");
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
         }
     }
 }
 
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
+
+
+

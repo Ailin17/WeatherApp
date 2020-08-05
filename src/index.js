@@ -1,7 +1,15 @@
+import { Select } from "./select";
+import { Weather } from "./weather";
+import { UI } from "./ui";
+import  "./sass/main.scss";
+/* import './data/city.list.json';
+import './data/CountryCodes.json';
+import './data/countryemoji.json';
+ */
+
 const weather = new Weather('2172797');
 const ui = new UI();
 const select = new Select();
-const text = null;
 
 document.addEventListener('DOMContentLoaded', getWeather);
 document.querySelector('.btn').addEventListener('click', changeCity);
@@ -24,11 +32,11 @@ function getWeather() {
 
 
 function changeCity() {
-    
+
     if (document.querySelector('#city-id').value !== '') {
         const cityID = parseInt(document.querySelector('#city-id').value);
-        weather.changeLocation(cityID); 
-      
+        weather.changeLocation(cityID);
+
         getWeather();
     } else {
         ui.setMessage('Please enter a valid city');
@@ -54,14 +62,13 @@ const searchCities = async searchQuery => {
     const cityByCountry = cities.filter(city => city.country === country);
 
     // Get matches to current text input
-    
+
     let matches = cityByCountry.filter(city => {
         const regex = new RegExp(`^${searchQuery}`, 'gi');
         return city.name.match(regex);
     }).slice(0, 15);
 
     if (searchQuery.length < 1) { matches = [] }
-    // console.log(matches);
     ui.createAutocomplete(matches);
 }
 
@@ -76,16 +83,15 @@ const getCountries = async () => {
         }
     })
 
-    //ui.createAutocomplete(matches);
     ui.countriesDropdown(list);
     select.getSelect();
 }
 
-/* const getEmojis = async () => {
-    const res = await fetch('../data/countryemoji.json');
-    const countries = await res.json();
-    ui.getEmojis(countries);
-} */
 
 document.addEventListener('DOMContentLoaded', getCountries);
-//document.addEventListener('DOMContentLoaded', getEmojis);
+
+/* If the user clicks anywhere outside the select box,
+then close all select boxes: */
+document.addEventListener("click", () => {
+    select.closeAllSelect();
+});

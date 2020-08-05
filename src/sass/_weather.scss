@@ -2,13 +2,14 @@
   background: linear-gradient(to right bottom, #{$primary}, #{$primary-light});
   border-radius: 25px;
   box-shadow: 0 1px 3rem $primary-dark;
-  height: 95vh;
+  //height: 95vh;
 
   & .main-weather {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     align-items: center;
+    color:white;
 
     & .temp-desc,
     & .temp-degrees {
@@ -76,6 +77,9 @@
   grid-template-columns: 1fr 1fr min-content;
   grid-gap: 2rem;
   margin-bottom: 3rem;
+     @media only screen and (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
 
   & .btn {
     align-self: center;
