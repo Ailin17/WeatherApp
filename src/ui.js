@@ -87,7 +87,7 @@ export class UI {
         document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
         switch (desc) {
             case 'Clouds':
-                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('img/clouds.jpg') ";
+                document.querySelector('.weather-wrapper').style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('shorturl.at/EJ258') ";
                 document.querySelector('.weather-wrapper').style.backgroundSize = "cover";
                 break;
             case 'Clear':
